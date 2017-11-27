@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FirebaseLogin</string>
+    <string name="notRegistered">Not registered yet? Register here.</string>
+    <string name="invalidUserOrPassword">Invalid user or password. Please try again.</string>
+</resources>
