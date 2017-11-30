@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/toolbar"
+        android:background="@color/colorPrimaryDark"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <Button
+            android:id="@+id/signOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Out" />
+
+    </android.support.v7.widget.Toolbar>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome!"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="30dp"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        android:text="Welcome!"
+        android:textSize="30dp"
+        android:textColor="@color/colorPrimaryDark"
+        />
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/optionsToolbar"
+        android:background="@color/colorPrimaryDark"
+        android:layout_alignParentBottom="true">
+    </android.support.v7.widget.Toolbar>
 
 </RelativeLayout>
