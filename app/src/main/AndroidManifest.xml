@@ -24,6 +24,14 @@
 
         </activity>
 
+        <activity android:name=".FavoritesActivity">
+
+        </activity>
+
+        <activity android:name=".WorkoutsActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

@@ -29,65 +29,12 @@
         android:textColor="@color/colorPrimaryDark"
         />
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
+    <include layout="@layout/bottom_toolbar"
         android:layout_height="wrap_content"
-        android:id="@+id/userOptions"
-        android:background="@color/colorPrimaryDark"
-        android:layout_alignParentBottom="true"
-        app:contentInsetStart="0dp">
+        android:layout_width="match_parent"
+        android:id="@+id/bottomToolbar"
+        android:layout_alignParentBottom="true">
+    </include>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:weightSum="1">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.333"
-                android:gravity="center">
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/home"
-                    android:background="@drawable/home"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.333"
-                android:gravity="center">
-
-                <ImageButton
-                    android:id="@+id/favorites"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/favorites">
-                </ImageButton>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.333"
-                android:gravity="center">
-
-                <ImageButton
-                    android:id="@+id/workouts"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/workouts"></ImageButton>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </android.support.v7.widget.Toolbar>
 
 </RelativeLayout>

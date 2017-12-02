@@ -11,20 +11,20 @@ import android.widget.ImageButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**
- * Created by ktoombs on 11/27/2017.
+ * Created by ktoombs on 12/2/2017.
  */
 
-public class HomePage extends AppCompatActivity {
+public class FavoritesActivity extends AppCompatActivity {
 
     private Button signOut;
-    private ImageButton favorites;
     private ImageButton workouts;
+    private ImageButton home;
     FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_homepage);
+        setContentView(R.layout.activity_favorites);
         mAuth = FirebaseAuth.getInstance();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -42,15 +42,14 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        favorites = findViewById(R.id.favorites);
-        favorites.setOnClickListener(new View.OnClickListener() {
+        home = findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent favoritesIntent = new Intent(getApplicationContext(), FavoritesActivity.class);
-                startActivity(favoritesIntent);
+                Intent homeIntent = new Intent(getApplicationContext(), HomePage.class);
+                startActivity(homeIntent);
             }
         });
-
 
         signOut = findViewById(R.id.signOut);
         signOut.setOnClickListener(new View.OnClickListener() {

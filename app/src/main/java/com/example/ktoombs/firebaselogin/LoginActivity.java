@@ -68,14 +68,14 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Log.d(TAG, "Sign in successful");
+                            Log.d(TAG, "*** Sign in successful");
                             FirebaseUser user = mAuth.getCurrentUser();
                             Intent homepageIntent = new Intent(getApplicationContext(), HomePage.class);
                             startActivity(homepageIntent);
                         }
                         else{
-                            Log.d(TAG, "Sign in failure. " + task.getException());
-                            Toast.makeText(LoginActivity.this, "", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "*** Sign in failure. " + task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication Error", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
