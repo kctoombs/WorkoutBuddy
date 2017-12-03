@@ -28,6 +28,10 @@
 
         </activity>
 
+        <activity android:name=".muscleGroupsActivity">
+
+        </activity>
+
         <activity android:name=".WorkoutsActivity">
 
         </activity>
