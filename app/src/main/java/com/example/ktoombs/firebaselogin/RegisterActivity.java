@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 /**
  * Created by ktoombs on 11/22/2017.
@@ -68,6 +69,9 @@ public class RegisterActivity extends AppCompatActivity{
                         if(task.isSuccessful()) {
                             Log.d(TAG, "Register user successful.");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName(firtName.getText().toString() + " " + lastName.getText().toString()).build();
+                            user.updateProfile(profileUpdates);
                             Intent homepageIntent = new Intent(getApplicationContext(), HomePage.class);
                             startActivity(homepageIntent);
                         }
