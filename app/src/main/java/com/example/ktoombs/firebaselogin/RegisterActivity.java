@@ -73,6 +73,7 @@ public class RegisterActivity extends AppCompatActivity{
                                     .setDisplayName(firtName.getText().toString() + " " + lastName.getText().toString()).build();
                             user.updateProfile(profileUpdates);
                             Intent homepageIntent = new Intent(getApplicationContext(), HomePage.class);
+                            homepageIntent.putExtra("displayName", firtName.getText().toString() + " " + lastName.getText().toString());
                             startActivity(homepageIntent);
                         }
                         else{

@@ -23,9 +23,30 @@
                 android:text="Back"
                 android:layout_centerVertical="true"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/muscleGroup"
+                android:layout_centerInParent="true"/>
+
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/workouts"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/bottomToolbar">
+    </ListView>
+
+    <include layout="@layout/bottom_toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/bottomToolbar"
+        android:layout_alignParentBottom="true">
+    </include>
 
 
 </RelativeLayout>
