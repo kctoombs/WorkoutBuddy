@@ -18,9 +18,11 @@ public class Scraper {
 
     private static final String TAG = "debug";
     private static ArrayList<String> workouts;
+    private static ArrayList<String> images;
 
     public Scraper(){
         workouts = new ArrayList<>();
+        images = new ArrayList<>();
     }
 
     public ArrayList<String> getWorkouts(){
@@ -47,6 +49,13 @@ public class Scraper {
                     String workout = workoutInfo.select("h3.ExHeading.ExResult-resultsHeading").text();
                     workouts.add(workout);
                     Log.d(TAG, "*** Workout: " + workout);
+                    Elements imageInfo = resultCells.select("div.ExResult-cell.ExResult-cell--imgs");
+                    for(Element img : imageInfo){
+                        String url = img.select("img").attr("data-src");
+                        //String absUrl = url.attr("src");
+                        Log.d(TAG, "*** URL: " + url);
+                        images.add(url);
+                    }
                 }
             }
         }
