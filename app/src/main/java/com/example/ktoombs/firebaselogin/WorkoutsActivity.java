@@ -33,8 +33,9 @@ public class WorkoutsActivity extends AppCompatActivity {
     private TextView selectedMuscleGroup;
     private String muscleGroup;
     private ListView workouts;
-    private ArrayAdapter<String> adapter;
+    //private ArrayAdapter<String> adapter;
     private Scraper scraper;
+    private CustomListAdapter adapter;
 
     //Scrape bodybuilding.com webpage
     //https://www.bodybuilding.com/exercises/muscle/chest
@@ -50,8 +51,8 @@ public class WorkoutsActivity extends AppCompatActivity {
         Log.d("debug", "*** " + muscleGroup);
 
         workouts = findViewById(R.id.workouts);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-        workouts.setAdapter(adapter);
+        //adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        //workouts.setAdapter(adapter);
 
         selectedMuscleGroup = findViewById(R.id.muscleGroup);
         selectedMuscleGroup.setText(muscleGroup + " " + "Workouts");
@@ -84,6 +85,7 @@ public class WorkoutsActivity extends AppCompatActivity {
             }
         });
 
+        scraper = new Scraper();
         new parseTask().execute();
 
     }
@@ -93,30 +95,14 @@ public class WorkoutsActivity extends AppCompatActivity {
         @Override
         protected Long doInBackground(URL... urls) {
             Log.d(TAG, "*** doInBackground ***");
-            scraper = new Scraper();
-            Scraper.parse(muscleGroup);
-
-            /*Document doc = null;
-            try {
-                doc = Jsoup.connect("https://www.bodybuilding.com/exercises/muscle/" + muscleGroup.toLowerCase()).get();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            Elements results = doc.select("div.ExCategory-results");
-            for(Element row : results){
-                Elements resultRows = row.children();
-                for(Element result : resultRows){
-                    //Log.d(TAG, "*** " + result.tagName());
-                    if(result.className().contains("ExResult-row")){
-                        Log.d(TAG, "***ExResult-row ***");
-                        Elements resultCells = result.children();
-                        Elements workoutInfo = resultCells.select("div.ExResult-cell.ExResult-cell--nameEtc");
-                        String workout = workoutInfo.select("h3.ExHeading.ExResult-resultsHeading").text();
-                        Log.d(TAG, "*** Workout: " + workout);
-                    }
+            scraper.parse(muscleGroup);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    adapter = new CustomListAdapter(WorkoutsActivity.this, scraper.getWorkouts(), scraper.getFirstImages(), scraper.getSecondImages());
+                    workouts.setAdapter(adapter);
                 }
-            }*/
+            });
             return null;
         }
 
