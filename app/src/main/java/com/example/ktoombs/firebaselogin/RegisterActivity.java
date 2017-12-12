@@ -25,6 +25,7 @@ public class RegisterActivity extends AppCompatActivity{
 
     private EditText firtName, lastName, email, password;
     private Button register;
+    private Button backButton;
     private final String TAG = "debug";
     private FirebaseAuth mAuth;
 
@@ -36,6 +37,15 @@ public class RegisterActivity extends AppCompatActivity{
         lastName = findViewById(R.id.lastName);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+
+        backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(loginIntent);
+            }
+        });
 
         register = findViewById(R.id.registerButton);
         register.setOnClickListener(new View.OnClickListener() {

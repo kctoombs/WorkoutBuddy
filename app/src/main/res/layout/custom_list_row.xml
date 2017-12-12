@@ -9,17 +9,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/workoutName"
-        android:layout_weight="0.8"
+        android:layout_weight="0.7"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="0.3"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginLeft="10dp">
+        android:layout_marginLeft="10dp"
+        android:gravity="end"
+        >
 
         <ImageView
             android:layout_width="50dp"
@@ -33,9 +36,9 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/secondImage"
-            android:layout_toRightOf="@+id/firstImage"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
+            android:layout_toRightOf="@id/firstImage"
             />
 
     </RelativeLayout>
