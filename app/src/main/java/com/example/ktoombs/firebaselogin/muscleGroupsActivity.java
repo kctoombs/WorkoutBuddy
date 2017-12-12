@@ -78,7 +78,8 @@ public class muscleGroupsActivity extends AppCompatActivity {
 
     private void setupWorkoutList(){
         workoutsList = findViewById(R.id.workoutList);
-        muscleGroups = new String[]{"Chest", "Back", "Biceps", "Triceps", "Legs", "Shoulders"};
+        muscleGroups = new String[]{"Chest", "Biceps", "Triceps", "Shoulders", "Lats", "Middle Back", "Lower Back",
+                "Abdominals", "Quadriceps", "Hamstrings", "Glutes", "Calves"};
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, muscleGroups);
         workoutsList.setAdapter(adapter);
         workoutsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

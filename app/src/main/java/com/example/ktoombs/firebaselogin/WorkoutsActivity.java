@@ -51,12 +51,15 @@ public class WorkoutsActivity extends AppCompatActivity {
         Log.d("debug", "*** " + muscleGroup);
 
         workouts = findViewById(R.id.workouts);
-        //adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-        //workouts.setAdapter(adapter);
 
         selectedMuscleGroup = findViewById(R.id.muscleGroup);
         selectedMuscleGroup.setText(muscleGroup + " " + "Workouts");
         selectedMuscleGroup.setTextSize(20);
+        
+        //This is for middle-back and lower-back
+        if(muscleGroup.toLowerCase().contains("back")){
+            muscleGroup = muscleGroup.replace(" ", "-");
+        }
 
         backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
