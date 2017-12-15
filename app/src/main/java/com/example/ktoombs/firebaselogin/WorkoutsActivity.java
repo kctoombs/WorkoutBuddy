@@ -3,9 +3,11 @@ package com.example.ktoombs.firebaselogin;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -33,9 +35,9 @@ public class WorkoutsActivity extends AppCompatActivity {
     private TextView selectedMuscleGroup;
     private String muscleGroup;
     private ListView workouts;
-    //private ArrayAdapter<String> adapter;
     private Scraper scraper;
     private CustomListAdapter adapter;
+    private String curVideo;
 
     //Scrape bodybuilding.com webpage
     //https://www.bodybuilding.com/exercises/muscle/chest
@@ -51,6 +53,14 @@ public class WorkoutsActivity extends AppCompatActivity {
         Log.d("debug", "*** " + muscleGroup);
 
         workouts = findViewById(R.id.workouts);
+        workouts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String curWorkout = scraper.getWorkouts().get(i);
+                new videoTask(scraper.getWorkouts().get(i)).execute();
+                createFragment(curWorkout);
+            }
+        });
 
         selectedMuscleGroup = findViewById(R.id.muscleGroup);
         selectedMuscleGroup.setText(muscleGroup + " " + "Workouts");
@@ -114,5 +124,30 @@ public class WorkoutsActivity extends AppCompatActivity {
             Log.d(TAG, "*** onPostExecute ***");
             adapter.addAll(scraper.getWorkouts());
         }
+    }
+
+
+    private class videoTask extends AsyncTask<URL, Integer, Long> {
+
+        private String videoURL;
+
+        public videoTask(String videoURL){
+            this.videoURL = videoURL;
+        }
+
+        @Override
+        protected Long doInBackground(URL... urls) {
+            curVideo = scraper.getVideo(videoURL);
+            return null;
+        }
+    }
+
+    private void createFragment(String curWorkout){
+        CustomFragment fragment = new CustomFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("workout", curWorkout);
+        fragment.setArguments(bundle);
+        FragmentManager fm = getSupportFragmentManager();
+        fragment.show(fm, curWorkout);
     }
 }

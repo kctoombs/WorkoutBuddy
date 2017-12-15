@@ -5,7 +5,15 @@
     android:layout_height="match_parent"
     tools:context="com.example.ktoombs.firebaselogin.LoginActivity">
 
-    <include layout="@layout/toolbar"/>
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/colorPrimaryDark"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:id="@+id/toolbar">
+    </android.support.v7.widget.Toolbar>
 
     <EditText
         android:layout_width="match_parent"

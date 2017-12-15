@@ -67,10 +67,8 @@ public class Scraper {
                     String workout = workoutInfo.select("h3.ExHeading.ExResult-resultsHeading").text();
                     workouts.add(workout);
                     Log.d(TAG, "*** Workout: " + workout);
-                    //Elements imageInfo = resultCells.select("div.ExResult-cell.ExResult-cell--imgs");
                     Elements imageInfo = resultCells.select("img");
                     for(Element img : imageInfo){
-                        //Element curImage = img.select("img");
                         try {
                             URL url = new URL(img.attr("data-src"));
                             Log.d(TAG, "*** URL: " + url);
@@ -96,6 +94,44 @@ public class Scraper {
         }
         Log.d(TAG, "*** firstImages size: " + firstImages.size());
         Log.d(TAG, "*** secondImages size: " + secondImages.size());
+    }
+
+    public String getVideo(String workout){
+        //Log.d(TAG, "*** getVideo() " + workout + "***");
+        Document doc = null;
+        String modifiedForURL = workout.toLowerCase().replace(" ", "-");
+        //Log.d(TAG, "*** modifiedForUrl " + modifiedForURL + " ***");
+        String videoURL = "";
+
+        try {
+            doc = Jsoup.connect("https://www.bodybuilding.com/exercises/" + modifiedForURL).get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Elements results = doc.select("div.ExDetail");
+        for(Element e : results){
+            Elements children = e.children();
+            for(Element curChild : children){
+                if(curChild.className().equals("ExDetail-section ExDetail-meta flexo-container flexo-start")){
+                    Elements divs = curChild.children();
+                    for(Element curDiv : divs){
+                        if(curDiv.className().equals("grid-6 grid-12-s grid-12-m")){
+                            Elements divChildren = curDiv.children();
+                            for(Element divChild : divChildren){
+                                if(divChild.tagName().equals("div")){
+                                    Log.d(TAG, "*** ID: " + divChild.id());
+                                    videoURL = divChild.attr("data-src");
+                                    Log.d(TAG, "*** Video URL: " + videoURL);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return videoURL;
     }
 }
 
