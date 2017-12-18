@@ -130,7 +130,7 @@ public class Scraper {
                 }
             }
         }
-
+        Log.d(TAG, "*** RETURN videoURL ***");
         return videoURL;
     }
 }

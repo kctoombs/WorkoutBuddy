@@ -37,7 +37,7 @@ public class WorkoutsActivity extends AppCompatActivity {
     private ListView workouts;
     private Scraper scraper;
     private CustomListAdapter adapter;
-    private String curVideo;
+    private String curVideo = "", curWorkout = "";
 
     //Scrape bodybuilding.com webpage
     //https://www.bodybuilding.com/exercises/muscle/chest
@@ -56,9 +56,8 @@ public class WorkoutsActivity extends AppCompatActivity {
         workouts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String curWorkout = scraper.getWorkouts().get(i);
-                new videoTask(scraper.getWorkouts().get(i)).execute();
-                createFragment(curWorkout);
+                curWorkout = scraper.getWorkouts().get(i);
+                new videoTask(curWorkout).execute();
             }
         });
 
@@ -140,12 +139,22 @@ public class WorkoutsActivity extends AppCompatActivity {
             curVideo = scraper.getVideo(videoURL);
             return null;
         }
+
+        @Override
+        protected void onPostExecute(Long result){
+            try {
+                createFragment(curWorkout, curVideo);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    private void createFragment(String curWorkout){
+    private void createFragment(String curWorkout, String curVideo) throws InterruptedException {
         CustomFragment fragment = new CustomFragment();
         Bundle bundle = new Bundle();
         bundle.putString("workout", curWorkout);
+        bundle.putString("video", curVideo);
         fragment.setArguments(bundle);
         FragmentManager fm = getSupportFragmentManager();
         fragment.show(fm, curWorkout);
