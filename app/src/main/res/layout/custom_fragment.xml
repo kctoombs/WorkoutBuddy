@@ -40,4 +40,24 @@
         android:id="@+id/video"
         android:layout_below="@+id/toolbar"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/video">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/playPause"
+            android:background="@drawable/pause_button"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/restart"
+            android:background="@drawable/restart_button"/>
+
+    </LinearLayout>
+
 </RelativeLayout>

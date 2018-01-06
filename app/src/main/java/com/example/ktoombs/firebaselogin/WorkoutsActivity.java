@@ -151,12 +151,9 @@ public class WorkoutsActivity extends AppCompatActivity {
     }
 
     private void createFragment(String curWorkout, String curVideo) throws InterruptedException {
-        CustomFragment fragment = new CustomFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("workout", curWorkout);
-        bundle.putString("video", curVideo);
-        fragment.setArguments(bundle);
-        FragmentManager fm = getSupportFragmentManager();
-        fragment.show(fm, curWorkout);
+        Intent videoIntent = new Intent(getApplicationContext(), CustomFragment.class);
+        videoIntent.putExtra("workout", curWorkout);
+        videoIntent.putExtra("video", curVideo);
+        startActivity(videoIntent);
     }
 }
