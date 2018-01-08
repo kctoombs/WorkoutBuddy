@@ -1,6 +1,8 @@
 package com.example.ktoombs.firebaselogin;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity{
     private Button backButton;
     private final String TAG = "debug";
     private FirebaseAuth mAuth;
+    private Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity{
         lastName = findViewById(R.id.lastName);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+        database = new Database(this);
 
         backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +86,8 @@ public class RegisterActivity extends AppCompatActivity{
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                     .setDisplayName(firtName.getText().toString() + " " + lastName.getText().toString()).build();
                             user.updateProfile(profileUpdates);
+                            database.addUser(user.getUid(), firtName.getText().toString(), lastName.getText().toString());
+                            database.getUserCount();
                             Intent homepageIntent = new Intent(getApplicationContext(), HomePage.class);
                             homepageIntent.putExtra("displayName", firtName.getText().toString() + " " + lastName.getText().toString());
                             startActivity(homepageIntent);

@@ -23,6 +23,7 @@ public class HomePage extends AppCompatActivity {
     private ImageButton favorites;
     private ImageButton workouts;
     FirebaseAuth mAuth;
+    Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +32,11 @@ public class HomePage extends AppCompatActivity {
         user = findViewById(R.id.username);
         mAuth = FirebaseAuth.getInstance();
         String username = mAuth.getCurrentUser().getDisplayName();
-        if(username.equals("null")){
+        if(username == null){
             Bundle extras = getIntent().getExtras();
             username = extras.getString("displayName");
         }
+
         String email = mAuth.getCurrentUser().getEmail();
         Log.d("debug", "*** " + username + " " + email);
         user.setText(username);
@@ -74,5 +76,6 @@ public class HomePage extends AppCompatActivity {
                 startActivity(loginIntent);
             }
         });
+
     }
 }

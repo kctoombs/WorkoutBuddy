@@ -30,8 +30,7 @@ public class WorkoutsActivity extends AppCompatActivity {
 
     private final String TAG = "debug";
     private Button backButton;
-    private ImageButton favorites;
-    private ImageButton home;
+    private ImageButton favorites, home;
     private TextView selectedMuscleGroup;
     private String muscleGroup;
     private ListView workouts;
