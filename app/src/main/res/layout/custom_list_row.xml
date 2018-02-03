@@ -22,7 +22,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginLeft="10dp"
         android:gravity="end"
-        >
+        android:descendantFocusability="blocksDescendants">
 
         <ImageView
             android:layout_width="50dp"
@@ -40,6 +40,15 @@
             android:layout_marginRight="5dp"
             android:layout_toRightOf="@id/firstImage"
             />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/star"
+            android:layout_toRightOf="@id/secondImage"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/star_border" />
 
     </RelativeLayout>
 

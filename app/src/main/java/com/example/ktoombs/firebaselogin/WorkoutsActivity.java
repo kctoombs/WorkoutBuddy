@@ -3,23 +3,15 @@ package com.example.ktoombs.firebaselogin;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
 import java.net.URL;
 
 /**
@@ -142,14 +134,14 @@ public class WorkoutsActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Long result){
             try {
-                createFragment(curWorkout, curVideo);
+                createVideoActivity(curWorkout, curVideo);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private void createFragment(String curWorkout, String curVideo) throws InterruptedException {
+    private void createVideoActivity(String curWorkout, String curVideo) throws InterruptedException {
         Intent videoIntent = new Intent(getApplicationContext(), CustomFragment.class);
         videoIntent.putExtra("workout", curWorkout);
         videoIntent.putExtra("video", curVideo);

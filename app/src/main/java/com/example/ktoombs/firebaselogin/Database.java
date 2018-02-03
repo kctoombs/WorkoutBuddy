@@ -62,7 +62,7 @@ public class Database extends SQLiteOpenHelper {
         }
     }
 
-    public boolean addFavorite(String uid, String workout, String image1, String image2, String video){
+    public boolean addFavorite(String uid, String workout, String image1, String image2/*, String video*/){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -70,7 +70,7 @@ public class Database extends SQLiteOpenHelper {
         values.put(WORKOUT, workout);
         values.put(IMAGE1, image1);
         values.put(IMAGE2, image2);
-        values.put(VIDEO, video);
+        //values.put(VIDEO, video);
 
         long result = db.insert(FAVORITES_TABLE, null, values);
         Log.d(TAG, "*** addFavorite RESULT: " + result);
@@ -89,7 +89,18 @@ public class Database extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT COUNT(*) AS count FROM users", null);
         if(cursor.moveToFirst()){
             count = cursor.getInt(cursor.getColumnIndex("count"));
-            Log.d("TAG", "*** COUNT: " + count);
+            Log.d("TAG", "*** USER COUNT: " + count);
+        }
+        return count;
+    }
+
+    public int getFavoritesCount(String uid){
+        int count = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) AS count FROM favorites WHERE uid = '" + uid + "'", null);
+        if (cursor.moveToFirst()){
+            count = cursor.getInt(cursor.getColumnIndex("count"));
+            Log.d("TAG", "*** FAVORITES COUNT: " + count);
         }
         return count;
     }
