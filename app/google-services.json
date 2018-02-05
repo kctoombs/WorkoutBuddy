@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:47890607148:android:6d2916c63d57c756",
         "android_client_info": {
-          "package_name": "com.example.ktoombs.firebaselogin"
+          "package_name": "com.example.ktoombs.WorkoutBuddy"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "47890607148-ma0c1a34hm0r0lae870gl144rinbg6s5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.ktoombs.firebaselogin",
+            "package_name": "com.example.ktoombs.WorkoutBuddy",
             "certificate_hash": "2065c0a06b59e6231c290ee434525ee733e026b3"
           }
         },

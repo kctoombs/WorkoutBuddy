@@ -1,4 +1,4 @@
-package com.example.ktoombs.firebaselogin;
+package com.example.ktoombs.WorkoutBuddy;
 
 import android.content.ContentValues;
 import android.content.Context;

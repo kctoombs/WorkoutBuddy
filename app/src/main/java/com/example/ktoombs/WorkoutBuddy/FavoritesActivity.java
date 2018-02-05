@@ -1,4 +1,4 @@
-package com.example.ktoombs.firebaselogin;
+package com.example.ktoombs.WorkoutBuddy;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -24,6 +25,7 @@ public class FavoritesActivity extends AppCompatActivity {
     private ImageButton workouts;
     private ImageButton home;
     private ListView workoutList;
+    private TextView noFavoritesMessage;
     private FirebaseAuth mAuth;
     private CustomListAdapter listAdapter;
     private Database database;
@@ -39,6 +41,7 @@ public class FavoritesActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         database = new Database(this);
         favorites = database.getFavorites(mAuth.getCurrentUser().getUid());
+        noFavoritesMessage = findViewById(R.id.noFavorites);
         addWorkoutsAndImagesToAdapter();
 
         setupToolbar();
@@ -104,5 +107,8 @@ public class FavoritesActivity extends AppCompatActivity {
             secondImages.add(workout.getImage2());
         }
         listAdapter = new CustomListAdapter(FavoritesActivity.this, favoriteWorkouts, firstImages, secondImages);
+        if(favoriteWorkouts.isEmpty()){
+            noFavoritesMessage.setVisibility(View.VISIBLE);
+        }
     }
 }
