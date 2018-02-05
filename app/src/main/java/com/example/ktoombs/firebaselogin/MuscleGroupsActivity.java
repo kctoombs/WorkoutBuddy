@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
  * Created by ktoombs on 11/30/2017.
  */
 
-public class muscleGroupsActivity extends AppCompatActivity {
+public class MuscleGroupsActivity extends AppCompatActivity {
     //Chest
     //Back
     //Shoulders

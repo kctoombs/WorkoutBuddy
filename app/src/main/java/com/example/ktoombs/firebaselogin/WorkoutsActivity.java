@@ -65,7 +65,7 @@ public class WorkoutsActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent muscleGroupIntent = new Intent(getApplicationContext(), muscleGroupsActivity.class);
+                Intent muscleGroupIntent = new Intent(getApplicationContext(), MuscleGroupsActivity.class);
                 startActivity(muscleGroupIntent);
             }
         });

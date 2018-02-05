@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button login;
     private FirebaseAuth mAuth;
     private final String TAG = "debug";
+    private Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

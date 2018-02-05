@@ -55,24 +55,33 @@ public class CustomListAdapter extends ArrayAdapter {
         ImageView img1 = rowView.findViewById(R.id.firstImage);
         ImageView img2 = rowView.findViewById(R.id.secondImage);
         final ImageButton star = rowView.findViewById(R.id.star);
+        database = new Database(context);
+        mAuth = FirebaseAuth.getInstance();
+
+        if(database.isFavoritedByUser(mAuth.getCurrentUser().getUid(), workoutNames.get(position))){
+            star.setBackgroundResource(R.drawable.star_filled_in);
+        }
+        else{
+            star.setBackgroundResource(R.drawable.star_border);
+        }
+
         star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mAuth = FirebaseAuth.getInstance();
-                database = new Database(context);
-                database.addFavorite(mAuth.getCurrentUser().getUid(), workoutNames.get(position),
-                        firstImages.get(position).toString(), secondImages.get(position).toString());
-                //ImageButton star = view.findViewById(R.id.star);
-                if(star == null){
+
+                if(star.getBackground() == null){
                     Log.d(TAG, "*** NULL ***");
                 }
-                if(star.getBackground().equals(R.drawable.star_border)){
+                if(star.getBackground().getConstantState().equals(context.getResources().getDrawable(R.drawable.star_border).getConstantState())){
                     Log.d(TAG, "*** If ***");
                     star.setBackgroundResource(R.drawable.star_filled_in);
+                    database.addFavorite(mAuth.getCurrentUser().getUid(), workoutNames.get(position),
+                            firstImages.get(position), secondImages.get(position));
                 }
                 else{
                     Log.d(TAG, "*** Else ***");
                     star.setBackgroundResource(R.drawable.star_border);
+                    database.removeFavorite(mAuth.getCurrentUser().getUid(), workoutNames.get(position));
                 }
                 database.getFavoritesCount(mAuth.getCurrentUser().getUid());
             }

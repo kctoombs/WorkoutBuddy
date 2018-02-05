@@ -52,7 +52,7 @@ public class HomePage extends AppCompatActivity {
         workouts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent workoutsIntent = new Intent(getApplicationContext(),muscleGroupsActivity.class);
+                Intent workoutsIntent = new Intent(getApplicationContext(),MuscleGroupsActivity.class);
                 startActivity(workoutsIntent);
             }
         });
