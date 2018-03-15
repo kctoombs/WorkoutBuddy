@@ -3,24 +3,25 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="2">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/workoutName"
-        android:layout_weight="0.7"
+        android:layout_weight="1"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp" />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.3"
+        android:layout_weight="1"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="5dp"
         android:gravity="end"
         android:descendantFocusability="blocksDescendants">
 
@@ -39,7 +40,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_toRightOf="@id/firstImage"
-            />
+            android:layout_toEndOf="@id/firstImage" />
 
         <ImageButton
             android:layout_width="50dp"
@@ -48,7 +49,8 @@
             android:layout_toRightOf="@id/secondImage"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/star_border" />
+            android:background="@drawable/star_border"
+            android:layout_toEndOf="@id/secondImage" />
 
     </RelativeLayout>
 
