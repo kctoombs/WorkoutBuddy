@@ -21,7 +21,7 @@ import java.net.URL;
 public class WorkoutsActivity extends AppCompatActivity {
 
     private final String TAG = "debug";
-    private Button backButton;
+    private ImageButton backButton;
     private ImageButton favorites, home;
     private TextView selectedMuscleGroup;
     private String muscleGroup;
@@ -142,7 +142,7 @@ public class WorkoutsActivity extends AppCompatActivity {
     }
 
     private void createVideoActivity(String curWorkout, String curVideo) throws InterruptedException {
-        Intent videoIntent = new Intent(getApplicationContext(), CustomFragment.class);
+        Intent videoIntent = new Intent(getApplicationContext(), VideoViewer.class);
         videoIntent.putExtra("workout", curWorkout);
         videoIntent.putExtra("video", curVideo);
         startActivity(videoIntent);

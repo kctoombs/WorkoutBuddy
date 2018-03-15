@@ -13,7 +13,7 @@ import android.widget.VideoView;
  * Created by ktoombs on 12/12/2017.
  */
 
-public class CustomFragment extends Activity {
+public class VideoViewer extends Activity {
 
     private ImageButton exitButton;
     private TextView curWorkout;
