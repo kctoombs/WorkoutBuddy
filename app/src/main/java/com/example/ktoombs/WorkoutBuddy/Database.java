@@ -75,7 +75,7 @@ public class Database extends SQLiteOpenHelper {
         byte[] image2AsBytes = getBitmapAsByteArray(image2);
 
         values.put(UID, uid);
-        values.put(WORKOUT, workout);
+        values.put(WORKOUT, workout.replace("'", ""));
         values.put(IMAGE1, image1AsBytes);
         values.put(IMAGE2, image2AsBytes);
         //values.put(VIDEO, video);
@@ -142,7 +142,7 @@ public class Database extends SQLiteOpenHelper {
 
     public boolean isFavoritedByUser(String uid, String workoutName){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT WORKOUT FROM favorites WHERE uid = '" + uid + "' AND WORKOUT = '" + workoutName + "'", null);
+        Cursor cursor = db.rawQuery("SELECT WORKOUT FROM favorites WHERE uid = '" + uid + "' AND WORKOUT = '" + workoutName.replace("'", "") + "'", null);
         if(cursor.moveToFirst()){
             cursor.close();
             return true;
